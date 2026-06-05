@@ -165,3 +165,4 @@ async def ws_endpoint(ws:WebSocket):
             await asyncio.sleep(15)
             await ws.send_json({"type":"ping"})
     except WebSocketDisconnect: mgr.rm(ws)
+sábado,  6 de junio de 2026, 01:25:37 CEST
