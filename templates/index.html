@@ -19,10 +19,10 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 /* LOGIN */
 #login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:20px}
 .logo{font-size:52px;margin-bottom:6px}
-.login-title{font-size:22px;font-weight:700;margin-bottom:2px}
-.login-sub{font-size:13px;color:var(--mt);margin-bottom:28px;text-align:center}
-.login-box{background:var(--sf);border-radius:var(--r);padding:18px;width:100%;max-width:380px}
-.section-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mt);margin-bottom:8px}
+.ltitle{font-size:22px;font-weight:700;margin-bottom:2px}
+.lsub{font-size:13px;color:var(--mt);margin-bottom:28px;text-align:center}
+.lbox{background:var(--sf);border-radius:var(--r);padding:18px;width:100%;max-width:380px}
+.slbl{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mt);margin-bottom:8px}
 .plist{display:flex;flex-direction:column;gap:5px;max-height:320px;overflow-y:auto;margin-bottom:14px}
 .pbtn{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;border:1px solid var(--br);background:none;color:var(--tx);font-size:13px;text-align:left;cursor:pointer;width:100%}
 .pbtn:active{background:var(--sf2)}
@@ -37,9 +37,9 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 /* APP */
 #app{display:none}
 .nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
-.nav-l{display:flex;align-items:center;gap:8px}
-.ntitle{font-size:14px;font-weight:600}
-.ldot{width:8px;height:8px;border-radius:50%;background:var(--gn);animation:pulse 1.5s infinite}
+.navl{display:flex;align-items:center;gap:8px}
+.ntitle{font-size:13px;font-weight:600}
+.ldot{width:8px;height:8px;border-radius:50%;background:var(--gn);animation:pulse 1.5s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .wbadge{font-size:11px;padding:3px 8px;border-radius:99px;font-weight:600}
 .wb-eu{background:var(--eu-bg);color:var(--eu-t)}
@@ -48,14 +48,23 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .nbtn{font-size:11px;color:var(--mt);background:none;border:1px solid var(--br);border-radius:8px;padding:4px 8px;cursor:pointer}
 
 /* SCOREBOARD */
-.sb{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:16px 14px 8px}
+.sb{padding:14px 14px 6px}
+.sb-main{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:8px}
 .tblock{text-align:center}
 .tlbl{font-size:11px;font-weight:700;letter-spacing:.08em;margin-bottom:2px}
 .tpts{font-size:48px;font-weight:700;line-height:1}
 .eu-c{color:var(--eu)}.usa-c{color:var(--usa)}
 .vs{font-size:16px;color:var(--br);font-weight:600}
-.lbar{margin:0 14px 14px;height:5px;border-radius:99px;background:var(--sf2);overflow:hidden}
+.lbar{margin:0 14px 8px;height:5px;border-radius:99px;background:var(--sf2);overflow:hidden}
 .lfill{height:100%;border-radius:99px;transition:width .5s;background:var(--eu)}
+.proj-box{margin:0 14px 12px;background:var(--sf);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.proj-lbl{font-size:11px;color:var(--mt)}
+.proj-score{font-size:18px;font-weight:700}
+.proj-vs{font-size:13px;color:var(--br)}
+.proj-tag{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:700}
+.tag-eu{background:var(--eu-bg);color:var(--eu-t)}
+.tag-usa{background:var(--usa-bg);color:var(--usa-t)}
+.tag-draw{background:var(--sf2);color:var(--mt)}
 
 /* TABS */
 .tabs{display:flex;padding:0 14px 10px;gap:6px;overflow-x:auto}
@@ -65,16 +74,33 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .sec{display:none;padding:0 14px 80px}
 .sec.on{display:block}
 
-/* OVERVIEW */
-.mcard{background:var(--sf);border-radius:var(--r);padding:12px 14px;margin-bottom:10px;cursor:pointer;border:1px solid transparent}
+/* MATCH CARDS */
+.mcard{background:var(--sf);border-radius:var(--r);padding:14px;margin-bottom:10px;border:1px solid transparent}
 .mcard.mine-eu{border-color:var(--eu)}
 .mcard.mine-usa{border-color:var(--usa)}
-.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.mcard-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .mlbl{font-size:13px;font-weight:600}
-.mscore{font-size:22px;font-weight:700}
+/* Scoreline dentro de partida */
+.match-scoreline{display:flex;align-items:center;gap:6px;background:var(--sf2);border-radius:8px;padding:8px 12px;margin-bottom:8px}
+.match-team-score{flex:1;text-align:center}
+.match-team-name{font-size:10px;font-weight:700;letter-spacing:.05em;margin-bottom:2px}
+.match-pts-big{font-size:28px;font-weight:700;line-height:1}
+.match-vs-sep{font-size:14px;color:var(--br);font-weight:600;flex-shrink:0}
+.match-detail{display:flex;gap:6px;margin-bottom:8px}
+.match-detail-item{flex:1;background:var(--bg);border-radius:6px;padding:6px 8px;text-align:center}
+.mdi-lbl{font-size:9px;color:var(--mt);font-weight:600;letter-spacing:.05em;margin-bottom:2px}
+.mdi-val{font-size:13px;font-weight:700}
 .mplayers{font-size:11px;color:var(--mt);display:flex;justify-content:space-between;gap:4px;margin-bottom:6px}
+.mprojrow{font-size:11px;color:var(--mt);margin-bottom:6px}
+.mprojrow span{font-weight:600}
 .pbar{height:4px;border-radius:99px;background:var(--sf2);overflow:hidden}
 .pbarfill{height:100%;border-radius:99px;background:var(--eu);transition:width .3s}
+/* Hoyo a hoyo mini */
+.hole-timeline{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:8px}
+.ht{width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;background:var(--sf2);color:var(--mt)}
+.ht.eu{background:var(--eu-bg);color:var(--eu-t)}
+.ht.usa{background:var(--usa-bg);color:var(--usa-t)}
+.ht.draw{background:var(--sf2);color:var(--mt)}
 
 /* ENTRADA */
 .msel{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
@@ -104,8 +130,6 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .net{font-size:11px;color:var(--mt);min-width:36px;text-align:right}
 .net.ok{color:var(--gn)}
 .savebtn{width:100%;padding:12px;border-radius:var(--r);background:var(--gn);color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;margin-top:6px}
-
-/* TABLE */
 .stbl{width:100%;border-collapse:collapse;font-size:12px}
 .stbl th{padding:5px 3px;color:var(--mt);font-weight:500;text-align:center;border-bottom:1px solid var(--br)}
 .stbl td{padding:6px 3px;text-align:center;border-bottom:1px solid var(--br)}
@@ -115,7 +139,6 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .b-eu{background:var(--eu-bg);color:var(--eu-t)}
 .b-usa{background:var(--usa-bg);color:var(--usa-t)}
 .b-draw{background:var(--sf2);color:var(--mt)}
-
 .offline{display:none;position:fixed;top:0;left:0;right:0;text-align:center;font-size:12px;padding:4px;background:#b91c1c;color:#fff;z-index:200}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--sf2);color:var(--tx);padding:9px 18px;border-radius:99px;font-size:13px;font-weight:500;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;z-index:100}
 .toast.on{opacity:1}
@@ -124,13 +147,12 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 <body>
 <div class="offline" id="offline">Sin conexión — reconectando…</div>
 
-<!-- LOGIN -->
 <div id="login">
   <div class="logo">🏌️</div>
-  <div class="login-title">Ryder Cup</div>
-  <div class="login-sub">Golf Las Pinaillas 2026<br>¿Quién eres?</div>
-  <div class="login-box">
-    <div class="section-lbl">JUGADORES</div>
+  <div class="ltitle">Ryder Cup</div>
+  <div class="lsub">Golf Las Pinaillas 2026<br>¿Quién eres?</div>
+  <div class="lbox">
+    <div class="slbl">JUGADORES</div>
     <div class="plist" id="plist"></div>
     <div class="adiv">
       <p>🔑 Acceso admin</p>
@@ -142,10 +164,9 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <nav class="nav">
-    <div class="nav-l">
+    <div class="navl">
       <div class="ldot" id="ldot"></div>
       <span class="ntitle">Ryder Cup · Las Pinaillas</span>
       <span class="wbadge" id="wbadge"></span>
@@ -157,11 +178,25 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
   </nav>
 
   <div class="sb">
-    <div class="tblock"><div class="tlbl eu-c">EUROPA</div><div class="tpts eu-c" id="eu-t">0</div></div>
-    <div class="vs">–</div>
-    <div class="tblock"><div class="tlbl usa-c">USA</div><div class="tpts usa-c" id="usa-t">0</div></div>
+    <div class="sb-main">
+      <div class="tblock"><div class="tlbl eu-c">EUROPA</div><div class="tpts eu-c" id="eu-t">0</div></div>
+      <div class="vs">–</div>
+      <div class="tblock"><div class="tlbl usa-c">USA</div><div class="tpts usa-c" id="usa-t">0</div></div>
+    </div>
   </div>
   <div class="lbar"><div class="lfill" id="lfill" style="width:50%"></div></div>
+  <div class="proj-box">
+    <div>
+      <div style="font-size:11px;color:var(--mt)">Proyección final</div>
+      <div style="font-size:10px;color:var(--br)" id="proj-sub">Sin datos aún</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="proj-score eu-c" id="proj-eu">—</span>
+      <span class="proj-vs">–</span>
+      <span class="proj-score usa-c" id="proj-usa">—</span>
+      <span class="proj-tag" id="proj-tag"></span>
+    </div>
+  </div>
 
   <div class="tabs">
     <button class="tab on" onclick="showTab('overview')">🏆 General</button>
@@ -200,7 +235,7 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
         <thead><tr>
           <th>H</th><th>Par</th>
           <th style="color:var(--eu)">EU</th><th style="color:var(--usa)">USA</th>
-          <th>Mejor</th><th>Peor</th>
+          <th>Mejor</th><th>Peor</th><th>Acum</th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -216,7 +251,6 @@ let S=null,me=null,admin=false,sm=0,sh=0,sm2=0,cpar=4,ws=null,wsr=0;
 
 function gh(hcp,hi){const si=SI[hi],b=Math.floor(hcp/18),r=hcp%18;return b+(si<=r?1:0);}
 
-// ── Init ──────────────────────────────────────────────────────────────────────
 (async()=>{
   const d=await fetch('/api/state').then(r=>r.json());
   S=d; buildLogin(); connectWS();
@@ -226,7 +260,7 @@ function buildLogin(){
   if(!S)return;
   const ul=document.getElementById('plist'); ul.innerHTML='';
   Object.entries(S.players).forEach(([name,info])=>{
-    const mid=S.pm[name], ml=S.matches.find(m=>m.id===mid);
+    const mid=S.pm[name];
     const b=document.createElement('button');
     b.className='pbtn';
     b.innerHTML=`<span class="dot" style="background:${info.team==='eu'?'var(--eu)':'var(--usa)'}"></span>
@@ -266,16 +300,21 @@ function logout(){
   me=null; admin=false;
 }
 
-// ── WebSocket ─────────────────────────────────────────────────────────────────
 function connectWS(){
   const p=location.protocol==='https:'?'wss':'ws';
   ws=new WebSocket(`${p}://${location.host}/ws`);
   ws.onopen=()=>{wsr=0;document.getElementById('offline').style.display='none';document.getElementById('ldot').style.background='#22c55e'};
-  ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.type==='state'){S=m.data;if(me)renderAll();}};
-  ws.onclose=()=>{document.getElementById('offline').style.display='block';document.getElementById('ldot').style.background='#ef4444';setTimeout(connectWS,Math.min(1000*2**wsr,16000));wsr++;};
+  ws.onmessage=e=>{
+    const m=JSON.parse(e.data);
+    if(m.type==='state'){S=m.data;if(me)renderAll();}
+  };
+  ws.onclose=()=>{
+    document.getElementById('offline').style.display='block';
+    document.getElementById('ldot').style.background='#ef4444';
+    setTimeout(connectWS,Math.min(1000*2**wsr,16000));wsr++;
+  };
 }
 
-// ── Render ────────────────────────────────────────────────────────────────────
 function renderAll(){
   rSB(); rOverview(); rMsel(); rHgrid(); rForm(); rTable();
 }
@@ -287,6 +326,18 @@ function rSB(){
   const tot=S.total_eu+S.total_usa, pct=tot?Math.round(S.total_eu/tot*100):50;
   const f=document.getElementById('lfill');
   f.style.width=pct+'%'; f.style.background=pct>=50?'var(--eu)':'var(--usa)';
+  const pe=S.proj_eu, pu=S.proj_usa;
+  document.getElementById('proj-eu').textContent=pe>0?pe:'—';
+  document.getElementById('proj-usa').textContent=pu>0?pu:'—';
+  const tag=document.getElementById('proj-tag');
+  const sub=document.getElementById('proj-sub');
+  if(S.total_done===0){tag.textContent='';sub.textContent='Sin datos aún';}
+  else{
+    sub.textContent=`Basado en ${S.total_done} hoyos jugados`;
+    if(pe>pu){tag.textContent='EU ganaría';tag.className='proj-tag tag-eu';}
+    else if(pu>pe){tag.textContent='USA ganaría';tag.className='proj-tag tag-usa';}
+    else{tag.textContent='Empate';tag.className='proj-tag tag-draw';}
+  }
 }
 
 function rOverview(){
@@ -294,27 +345,78 @@ function rOverview(){
   const myMid=admin?-1:S.pm[me];
   const div=document.getElementById('mcards'); div.innerHTML='';
   S.matches.forEach((m,i)=>{
-    const pts=S.match_pts[i], done=m.holes.filter(h=>h.done).length;
+    const pts=S.match_pts[i], done=pts.done;
     const isMine=m.id===myMid;
     const myT=isMine?(m.eu.includes(me)?'eu':'usa'):null;
-    const ec=pts.eu>pts.usa?'var(--eu)':'var(--mt)';
-    const uc=pts.usa>pts.eu?'var(--usa)':'var(--mt)';
-    div.innerHTML+=`<div class="mcard${isMine?' mine-'+myT:''}" onclick="goMatch(${i})">
-      <div class="mhead">
-        <span class="mlbl">${m.label}${isMine?' <span style="font-size:10px;color:var(--am)">⭐ Tu partida</span>':''}</span>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="mscore" style="color:${ec}">${pts.eu}</span>
-          <span style="color:var(--br);font-size:14px">–</span>
-          <span class="mscore" style="color:${uc}">${pts.usa}</span>
-        </div>
+
+    // Marcador acumulado por hoyo
+    let cumEu=0, cumUsa=0;
+    const timelineHtml = m.holes.map((h,hi)=>{
+      if(!h.done) return `<div class="ht">${hi+1}</div>`;
+      const he=h.pts_eu_m+h.pts_eu_p, hu=h.pts_usa_m+h.pts_usa_p;
+      cumEu+=he; cumUsa+=hu;
+      const cls=he>hu?'eu':hu>he?'usa':'draw';
+      return `<div class="ht ${cls}" title="H${hi+1}: EU${cumEu}-USA${cumUsa}">${hi+1}</div>`;
+    }).join('');
+
+    // Colores marcador
+    const ec=pts.eu>pts.usa?'var(--eu)':pts.usa>pts.eu?'var(--mt)':'var(--mt)';
+    const uc=pts.usa>pts.eu?'var(--usa)':pts.eu>pts.usa?'var(--mt)':'var(--mt)';
+
+    // Proyección
+    let projHtml='';
+    if(done>0){
+      const pe=pts.proj_eu,pu=pts.proj_usa;
+      const w=pe>pu?`<span style="color:var(--eu-t);font-weight:600">EU ~${pe}</span>`:pu>pe?`<span style="color:var(--usa-t);font-weight:600">USA ~${pu}</span>`:`<span style="color:var(--mt);font-weight:600">Empate</span>`;
+      projHtml=`<div class="mprojrow">📈 Proyección: ${w} · ${done}/18 hoyos</div>`;
+    }
+
+    // Mejor bola y peor bola acumuladas
+    const euMejor=m.holes.reduce((a,h)=>a+h.pts_eu_m,0);
+    const usaMejor=m.holes.reduce((a,h)=>a+h.pts_usa_m,0);
+    const euPeor=m.holes.reduce((a,h)=>a+h.pts_eu_p,0);
+    const usaPeor=m.holes.reduce((a,h)=>a+h.pts_usa_p,0);
+
+    div.innerHTML+=`<div class="mcard${isMine?' mine-'+myT:''}" onclick="verPartida(${i})">
+      <div class="mcard-head">
+        <span class="mlbl">${m.label}${isMine?' ⭐':''}</span>
+        <span style="font-size:11px;color:var(--mt)">${done}/18 hoyos</span>
       </div>
       <div class="mplayers">
         <span style="color:var(--eu-t)">${m.eu.join(' · ')}</span>
         <span style="color:var(--usa-t);text-align:right">${m.usa.join(' · ')}</span>
       </div>
+      <div class="match-scoreline">
+        <div class="match-team-score">
+          <div class="match-team-name eu-c">EUROPA</div>
+          <div class="match-pts-big" style="color:${ec}">${pts.eu}</div>
+        </div>
+        <div class="match-vs-sep">–</div>
+        <div class="match-team-score">
+          <div class="match-team-name usa-c">USA</div>
+          <div class="match-pts-big" style="color:${uc}">${pts.usa}</div>
+        </div>
+      </div>
+      <div class="match-detail">
+        <div class="match-detail-item">
+          <div class="mdi-lbl">MEJOR BOLA (+2)</div>
+          <div class="mdi-val"><span style="color:var(--eu)">${euMejor}</span> – <span style="color:var(--usa)">${usaMejor}</span></div>
+        </div>
+        <div class="match-detail-item">
+          <div class="mdi-lbl">PEOR BOLA (+1)</div>
+          <div class="mdi-val"><span style="color:var(--eu)">${euPeor}</span> – <span style="color:var(--usa)">${usaPeor}</span></div>
+        </div>
+      </div>
+      <div class="hole-timeline">${timelineHtml}</div>
+      ${projHtml}
       <div class="pbar"><div class="pbarfill" style="width:${done/18*100}%"></div></div>
     </div>`;
   });
+}
+
+function verPartida(i){
+  // Cualquiera puede ver la tarjeta de cualquier partida
+  sm2=i; showTab('tarjeta');
 }
 
 function goMatch(i){
@@ -401,46 +503,60 @@ function chPar(d){
 }
 
 async function saveHole(){
-  const m=S.matches[sm], all=[...m.eu,...m.usa]; let saved=0;
-  for(const name of all){
+  const m=S.matches[sm], all=[...m.eu,...m.usa];
+  const scores={};
+  all.forEach(name=>{
     const k=name.replace(/[^a-zA-Z0-9]/g,'_');
     const inp=document.getElementById('s_'+k);
-    if(!inp||inp.disabled)continue;
+    if(!inp||inp.disabled)return;
     const v=parseInt(inp.value);
-    const r=await fetch('/api/score',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({match_id:sm,hole:sh,player:name,score:isNaN(v)?null:v})});
-    if(!isNaN(v)&&r.ok)saved++;
-  }
-  if(saved>0){toast(`Hoyo ${sh+1} guardado ✓`);if(sh<17){sh++;rHgrid();rForm();}}
-  else toast('Introduce al menos un golpe');
+    scores[name]=isNaN(v)?null:v;
+  });
+  if(!Object.values(scores).some(v=>v!==null)){toast('Introduce al menos un golpe');return;}
+  const r=await fetch('/api/hole',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({match_id:sm,hole:sh,scores})});
+  if(r.ok){toast(`Hoyo ${sh+1} guardado ✓`);if(sh<17){sh++;rHgrid();rForm();}}
+  else toast('Error al guardar');
 }
 
 function rTable(){
   if(!S)return;
-  const m=S.matches[sm2], tb=document.getElementById('tbody'); tb.innerHTML='';
+  const m=S.matches[sm2];
+  const tb=document.getElementById('tbody');
+  if(!tb)return;
+  tb.innerHTML='';
+  let cumEu=0,cumUsa=0;
   m.holes.forEach((h,i)=>{
     const par=S.par[i], tr=document.createElement('tr');
     if(!h.done){
-      tr.innerHTML=`<td class="hn">${i+1}</td><td>${par}</td><td colspan="2" style="color:var(--br)">—</td><td>·</td><td>·</td>`;
+      tr.innerHTML=`<td class="hn">${i+1}</td><td>${par}</td><td colspan="2" style="color:var(--br)">—</td><td>·</td><td>·</td><td style="color:var(--br)">—</td>`;
     } else {
+      cumEu+=h.pts_eu_m+h.pts_eu_p;
+      cumUsa+=h.pts_usa_m+h.pts_usa_p;
       const mb=h.pts_eu_m>h.pts_usa_m?'<span class="bdg b-eu">EU+2</span>':h.pts_usa_m>h.pts_eu_m?'<span class="bdg b-usa">USA+2</span>':'<span class="bdg b-draw">–</span>';
       const pb=h.pts_eu_p>h.pts_usa_p?'<span class="bdg b-eu">EU+1</span>':h.pts_usa_p>h.pts_eu_p?'<span class="bdg b-usa">USA+1</span>':'<span class="bdg b-draw">–</span>';
+      const cumC=cumEu>cumUsa?'var(--eu)':cumUsa>cumEu?'var(--usa)':'var(--mt)';
       tr.innerHTML=`<td class="hn">${i+1}</td><td>${par}</td>
         <td style="color:var(--eu);font-weight:600">${h.eu_best}<small style="color:var(--br)">(${h.eu_worst})</small></td>
         <td style="color:var(--usa);font-weight:600">${h.usa_best}<small style="color:var(--br)">(${h.usa_worst})</small></td>
-        <td>${mb}</td><td>${pb}</td>`;
+        <td>${mb}</td><td>${pb}</td>
+        <td style="font-weight:700;color:${cumC}">${cumEu}–${cumUsa}</td>`;
     }
     tb.appendChild(tr);
   });
+  if(cumEu+cumUsa>0){
+    const tr=document.createElement('tr');
+    tr.style.cssText='border-top:2px solid var(--br)';
+    tr.innerHTML=`<td colspan="2" style="font-weight:700;font-size:12px;color:var(--mt);text-align:left;padding:8px 3px">TOTAL</td>
+      <td colspan="4"></td>
+      <td style="font-weight:700"><span style="color:var(--eu)">${cumEu}</span>–<span style="color:var(--usa)">${cumUsa}</span></td>`;
+    tb.appendChild(tr);
+  }
 }
 
 function showTab(name){
-  ['overview','entrada','tarjeta'].forEach(t=>{
-    document.getElementById('t-'+t).classList.toggle('on',t===name);
-  });
-  document.querySelectorAll('.tab').forEach((b,i)=>{
-    b.classList.toggle('on',['overview','entrada','tarjeta'][i]===name);
-  });
+  ['overview','entrada','tarjeta'].forEach(t=>{document.getElementById('t-'+t).classList.toggle('on',t===name)});
+  document.querySelectorAll('.tab').forEach((b,i)=>{b.classList.toggle('on',['overview','entrada','tarjeta'][i]===name)});
   if(name==='entrada'){rMsel();rHgrid();rForm();}
   if(name==='tarjeta'){rMsel();rTable();}
 }
@@ -454,8 +570,8 @@ async function doReset(){
 let tt;
 function toast(msg){
   const el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('on');
-  clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('on'),2500);
+  el.textContent=msg;el.classList.add('on');
+  clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('on'),2500);
 }
 </script>
 </body>
