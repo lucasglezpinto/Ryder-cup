@@ -78,11 +78,12 @@ def calc(match, hi):
     h["done"]=True
 
 def totals():
-    eu=usa=0; mp=[]
+    eu_wins=usa_wins=0; mp=[]
     for m in state["matches"]:
         e=sum(h["pts_eu_m"]+h["pts_eu_p"] for h in m["holes"] if h["done"])
         u=sum(h["pts_usa_m"]+h["pts_usa_p"] for h in m["holes"] if h["done"])
-        eu+=e; usa+=u
+        if e>u: eu_wins+=1
+        elif u>e: usa_wins+=1
         done=sum(1 for h in m["holes"] if h["done"])
         if done>0:
             proj_eu=round(e/done*18,1)
@@ -90,13 +91,13 @@ def totals():
         else:
             proj_eu=proj_usa=0.0
         mp.append({"eu":e,"usa":u,"done":done,"proj_eu":proj_eu,"proj_usa":proj_usa})
-    return eu,usa,mp
+    return eu_wins,usa_wins,mp
 
 def full():
     eu,usa,mp=totals()
     total_done=sum(m["done"] for m in mp)
-    proj_eu=round(sum(m["proj_eu"] for m in mp),1) if total_done>0 else 0
-    proj_usa=round(sum(m["proj_usa"] for m in mp),1) if total_done>0 else 0
+    proj_eu=sum(1 for m in mp if m["proj_eu"]>m["proj_usa"])
+    proj_usa=sum(1 for m in mp if m["proj_usa"]>m["proj_eu"])
     return {**state,"total_eu":eu,"total_usa":usa,"match_pts":mp,
             "proj_eu":proj_eu,"proj_usa":proj_usa,"total_done":total_done,
             "players":PLAYERS,"si":STROKE_INDEX,"par":PAR,"pm":PLAYER_MATCH}
